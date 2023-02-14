@@ -1,0 +1,17 @@
+apiVersion: templates.gatekeeper.sh/v1beta1
+kind: K8sDisallowedTags
+metadata:
+  name: no-latest-tags
+spec:
+  match:
+    kinds:
+    - apiGroups:
+      - ""  
+      kinds:
+      - Pod
+  parameters:
+    exemptImages:
+      - docker.io/nginx:latest
+      - docker.io/busybox:latest
+    tags:
+      - tryhard
